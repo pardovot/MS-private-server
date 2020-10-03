@@ -1897,75 +1897,78 @@ public class Char {
 		return skill;
 	}
 
-	public void setStat(Stat charStat, int amount) {
+	public void setStat(Stat charStat, int value) {
 		CharacterStat cs = getAvatarData().getCharacterStat();
 		switch (charStat) {
 			case str:
-				cs.setStr(amount);
+				cs.setStr(value);
 				break;
 			case dex:
-				cs.setDex(amount);
+				cs.setDex(value);
 				break;
 			case inte:
-				cs.setInt(amount);
+				cs.setInt(value);
 				break;
 			case luk:
-				cs.setLuk(amount);
+				cs.setLuk(value);
 				break;
 			case hp:
-				cs.setHp(amount);
+				cs.setHp(value);
 				break;
 			case mhp:
-				cs.setMaxHp(amount);
+				cs.setMaxHp(value);
 				if (JobConstants.isDemonAvenger(getJob())) {
 					((Demon) getJobHandler()).sendHpUpdate();
 				}
 				break;
 			case mp:
-				cs.setMp(amount);
+				cs.setMp(value);
 				break;
 			case mmp:
-				cs.setMaxMp(amount);
+				cs.setMaxMp(value);
 				break;
 			case ap:
-				cs.setAp(amount);
+				cs.setAp(value);
 				break;
 			case level:
-				cs.setLevel(amount);
+				cs.setLevel(value);
 				notifyChanges();
 				break;
 			case skin:
-				cs.setSkin(amount);
+				cs.setSkin(value);
 				break;
 			case face:
-				cs.setFace(amount);
+				cs.setFace(value);
 				break;
 			case hair:
-				cs.setHair(amount);
+				cs.setHair(value);
 				break;
 			case pop:
-				cs.setPop(amount);
+				cs.setPop(value);
 				break;
 			case charismaEXP:
-				cs.setCharismaExp(amount);
+				cs.setCharismaExp(value);
 				break;
 			case charmEXP:
-				cs.setCharmExp(amount);
+				cs.setCharmExp(value);
 				break;
 			case craftEXP:
-				cs.setCraftExp(amount);
+				cs.setCraftExp(value);
 				break;
 			case insightEXP:
-				cs.setInsightExp(amount);
+				cs.setInsightExp(value);
 				break;
 			case senseEXP:
-				cs.setSenseExp(amount);
+				cs.setSenseExp(value);
 				break;
 			case willEXP:
-				cs.setWillExp(amount);
+				cs.setWillExp(value);
 				break;
 			case fatigue:
-				cs.setFatigue(amount);
+				cs.setFatigue(value);
+				break;
+			case subJob:
+				cs.setSubJob(value);
 				break;
 		}
 	}
@@ -2043,6 +2046,8 @@ public class Char {
 				return cs.getWillExp();
 			case fatigue:
 				return cs.getFatigue();
+			case subJob:
+				return cs.getSubJob();
 		}
 		return -1;
 	}
