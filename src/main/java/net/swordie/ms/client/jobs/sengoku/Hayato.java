@@ -681,6 +681,8 @@ public class Hayato extends Job {
     @Override
     public void handleLevelUp() {
         super.handleLevelUp();
+
+        // TODO give sp to proper job advancement, now gives sp to the old one(probably not enough time in between setting job and sp)
         if (chr.getLevel() == 60) {
             chr.setJob(4111);
             chr.setStatAndSendPacket(Stat.subJob, 4111);

@@ -522,7 +522,7 @@ public class Evan extends Job {
     @Override
     public void handleLevelUp() {
         super.handleLevelUp();
-        //TODO give sp to proper job advancement, now gives sp to the old one(probably not enough time inbetween setting job and sp)
+        // TODO give sp to proper job advancement, now gives sp to the old one(probably not enough time in between setting job and sp)
         if (chr.getLevel() == 10) {
             chr.setJob(2210);
             chr.setStatAndSendPacket(Stat.subJob, 2210);
