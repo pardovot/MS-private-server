@@ -173,6 +173,10 @@ public class FieldData {
 
     }
 
+    public static String getFolderName() {
+        return "fields";
+    }
+
     private static void loadFieldInfoFromWz() {
         String wzDir = ServerConstants.WZ_DIR + "/Map.wz/Map";
         File dir = new File(wzDir);

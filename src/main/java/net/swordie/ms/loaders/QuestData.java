@@ -570,6 +570,10 @@ public class QuestData {
         log.info(String.format("Completed generating quest data in %dms.", System.currentTimeMillis() - start));
     }
 
+    public static String getFolderName() {
+        return "quests";
+    }
+
     private static void saveAllQuestInfos(String dir) {
         Util.makeDirIfAbsent(dir);
         for (QuestInfo qi : getBaseQuests()) {

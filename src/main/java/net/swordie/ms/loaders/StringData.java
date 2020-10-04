@@ -44,31 +44,31 @@ public class StringData {
         long start = System.currentTimeMillis();
         String wzDir = ServerConstants.WZ_DIR + "/String.wz/";
         String[] files = new String[]{"Cash", "Consume", "Eqp", "Ins", "Pet", "Etc"};
-        for(String fileDir : files) {
+        for (String fileDir : files) {
             File file = new File(wzDir + fileDir + ".img.xml");
             Document doc = XMLApi.getRoot(file);
             Node node = doc;
             List<Node> nodes = XMLApi.getAllChildren(node);
             for (Node topNode : nodes) {
-                if(!fileDir.equalsIgnoreCase("eqp") &&
+                if (!fileDir.equalsIgnoreCase("eqp") &&
                         !fileDir.equalsIgnoreCase("etc")) {
                     for (Node mainNode : XMLApi.getAllChildren(topNode)) {
                         int id = Integer.parseInt(XMLApi.getNamedAttribute(mainNode, "name"));
                         String name = XMLApi.getNamedAttribute(XMLApi.getFirstChildByNameBF(mainNode, "name"), "value");
                         itemStrings.put(id, name);
                     }
-                } else if(fileDir.equalsIgnoreCase("etc")) {
+                } else if (fileDir.equalsIgnoreCase("etc")) {
                     for (Node category : XMLApi.getAllChildren(topNode)) {
                         for (Node mainNode : XMLApi.getAllChildren(category)) {
                             int id = Integer.parseInt(XMLApi.getNamedAttribute(mainNode, "name"));
-                            if(XMLApi.getFirstChildByNameBF(mainNode, "name") != null) {
+                            if (XMLApi.getFirstChildByNameBF(mainNode, "name") != null) {
                                 String name = XMLApi.getNamedAttribute(XMLApi.getFirstChildByNameBF(mainNode, "name"), "value");
                                 itemStrings.put(id, name);
                             }
                         }
                     }
                 } else {
-                    for(Node n : XMLApi.getAllChildren(topNode)) {
+                    for (Node n : XMLApi.getAllChildren(topNode)) {
                         for (Node category : XMLApi.getAllChildren(n)) {
                             for (Node mainNode : XMLApi.getAllChildren(category)) {
                                 int id = Integer.parseInt(XMLApi.getNamedAttribute(mainNode, "name"));
@@ -92,7 +92,7 @@ public class StringData {
         Node node = doc;
         List<Node> nodes = XMLApi.getAllChildren(node);
         for (Node topNode : nodes) {
-            for(Node mainNode : XMLApi.getAllChildren(topNode)) {
+            for (Node mainNode : XMLApi.getAllChildren(topNode)) {
                 Node bookNameNode = XMLApi.getFirstChildByNameBF(mainNode, "bookName");
                 if (bookNameNode != null) {
                     continue;
@@ -221,6 +221,10 @@ public class StringData {
         log.info(String.format("Completed generating string data in %dms.", System.currentTimeMillis() - start));
     }
 
+    public static String getFolderName() {
+        return "strings";
+    }
+
     private static void saveSkillStrings(String dir) {
         Util.makeDirIfAbsent(dir);
 //        String fileDir = dir + "/skills";
@@ -228,7 +232,7 @@ public class StringData {
         File file = new File(dir + "/skills.dat");
         try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file))) {
             dataOutputStream.writeInt(getSkillString().size());
-            for(Map.Entry<Integer, SkillStringInfo> entry : getSkillString().entrySet()) {
+            for (Map.Entry<Integer, SkillStringInfo> entry : getSkillString().entrySet()) {
                 int id = entry.getKey();
                 SkillStringInfo ssi = entry.getValue();
                 dataOutputStream.writeInt(id);
@@ -265,7 +269,7 @@ public class StringData {
         File file = new File(dir + "/items.dat");
         try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file))) {
             dataOutputStream.writeInt(itemStrings.size());
-            for(Map.Entry<Integer, String> entry : itemStrings.entrySet()) {
+            for (Map.Entry<Integer, String> entry : itemStrings.entrySet()) {
                 int id = entry.getKey();
                 String ssi = entry.getValue();
                 dataOutputStream.writeInt(id);
@@ -297,7 +301,7 @@ public class StringData {
         File file = new File(dir + "/mobs.dat");
         try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file))) {
             dataOutputStream.writeInt(getMobStrings().size());
-            for(Map.Entry<Integer, String> entry : getMobStrings().entrySet()) {
+            for (Map.Entry<Integer, String> entry : getMobStrings().entrySet()) {
                 int id = entry.getKey();
                 String name = entry.getValue();
                 dataOutputStream.writeInt(id);
@@ -329,7 +333,7 @@ public class StringData {
         File file = new File(dir + "/npcs.dat");
         try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file))) {
             dataOutputStream.writeInt(getNpcStrings().size());
-            for(Map.Entry<Integer, String> entry : getNpcStrings().entrySet()) {
+            for (Map.Entry<Integer, String> entry : getNpcStrings().entrySet()) {
                 int id = entry.getKey();
                 String name = entry.getValue();
                 dataOutputStream.writeInt(id);
@@ -361,7 +365,7 @@ public class StringData {
         File file = new File(dir + "/maps.dat");
         try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file))) {
             dataOutputStream.writeInt(getMapStrings().size());
-            for(Map.Entry<Integer, String> entry : getMapStrings().entrySet()) {
+            for (Map.Entry<Integer, String> entry : getMapStrings().entrySet()) {
                 int id = entry.getKey();
                 String name = entry.getValue();
                 dataOutputStream.writeInt(id);
@@ -390,7 +394,6 @@ public class StringData {
 
     public static void main(String[] args) {
         generateDatFiles();
-//        generateTextFiles();
     }
 
 
@@ -420,7 +423,7 @@ public class StringData {
         for (Map.Entry<Integer, String> entry : itemStrings.entrySet()) {
             int id = entry.getKey();
             String name = entry.getValue();
-            if(name == null) {
+            if (name == null) {
                 continue;
             }
             String ssName = name.toLowerCase();
@@ -437,7 +440,7 @@ public class StringData {
         for (Map.Entry<Integer, SkillStringInfo> entry : StringData.getSkillString().entrySet()) {
             int id = entry.getKey();
             SkillStringInfo ssi = entry.getValue();
-            if(ssi.getName() == null) {
+            if (ssi.getName() == null) {
                 continue;
             }
             String ssName = ssi.getName().toLowerCase();
@@ -454,7 +457,7 @@ public class StringData {
         for (Map.Entry<Integer, String> entry : getMobStrings().entrySet()) {
             int id = entry.getKey();
             String name = entry.getValue();
-            if(name == null) {
+            if (name == null) {
                 continue;
             }
             String ssName = name.toLowerCase();
@@ -471,7 +474,7 @@ public class StringData {
         for (Map.Entry<Integer, String> entry : getNpcStrings().entrySet()) {
             int id = entry.getKey();
             String name = entry.getValue();
-            if(name == null) {
+            if (name == null) {
                 continue;
             }
             String ssName = name.toLowerCase();
@@ -488,7 +491,7 @@ public class StringData {
         for (Map.Entry<Integer, String> entry : getMapStrings().entrySet()) {
             int id = entry.getKey();
             String name = entry.getValue();
-            if(name == null) {
+            if (name == null) {
                 continue;
             }
             String ssName = name.toLowerCase();
