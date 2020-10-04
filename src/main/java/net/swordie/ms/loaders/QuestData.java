@@ -426,7 +426,17 @@ public class QuestData {
                     String value = XMLApi.getNamedAttribute(rewardNode, "value");
                     switch (name) {
                         case "transferField":
-                            quest.setTransferField(Integer.valueOf(value));
+                            /*
+                            On mercedes 2nd job the first chain quest(24010) transferField is set to Elluel(101050000).
+                            The following quest is on the same map(910150100), so there's no sense going back to Elluel,
+                            because then you need to go to the same map(there are no ms directions and it's very confusing).
+                            A bit hacky, but this would make sure we don't save the transferField for quest id 24010.
+                            More info here: https://github.com/pardovot/ms/issues/5
+                             */
+
+                            if (id != 24010) {
+                                quest.setTransferField(Integer.valueOf(value));
+                            }
                             break;
                         case "nextQuest":
                             quest.setNextQuest(Integer.parseInt(value));
