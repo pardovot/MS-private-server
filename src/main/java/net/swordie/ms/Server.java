@@ -134,22 +134,6 @@ public class Server extends Properties {
                 e.printStackTrace();
             }
         }
-
-
-//		File file = new File(ServerConstants.DAT_DIR + "/equips");
-//		boolean exists = file.exists();
-//		if (!exists) {
-//			log.info("Dat files cannot be found (at least not the equip dats). All dats will now be generated. This may take a long while.");
-//			Util.makeDirIfAbsent(ServerConstants.DAT_DIR);
-//			for (Class c : DataClasses.datCreators) {
-//				try {
-//					Method m = c.getMethod("generateDatFiles");
-//					m.invoke(null);
-//				} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
     }
 
     public void loadWzData() throws IllegalAccessException, InvocationTargetException {
