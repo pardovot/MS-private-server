@@ -1990,4 +1990,12 @@ public class AdminCommands {
             other.addNx(amount);
         }
     }
+
+    @Command(names = {"getfield"}, requiredType = Tester)
+    public static class GetField extends AdminCommand {
+
+        public static void execute(Char chr, String[] args) {
+            chr.chatMessage(Notice2, chr.getField().toString());
+        }
+    }
 }
