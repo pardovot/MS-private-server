@@ -1925,6 +1925,10 @@ public class ItemData {
         log.info(String.format("Completed generating item data in %dms.", System.currentTimeMillis() - start));
     }
 
+    public static String[] getFolderName() {
+        return new String[] {"equips", "items", "pets"};
+    }
+
     public static void main(String[] args) {
         DatabaseManager.init();
         generateDatFiles();

@@ -47,6 +47,10 @@ public class MobData {
         log.info(String.format("Completed generating mob data in %dms.", System.currentTimeMillis() - start));
     }
 
+    public static String getFolderName() {
+        return "mobs";
+    }
+
     public static Mob getMobById(int id) {
         Mob mob = getMobs().get(id);
         if (mob == null) {

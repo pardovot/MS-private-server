@@ -225,6 +225,10 @@ public class ReactorData {
         log.info(String.format("Completed generating reactor data in %dms.", System.currentTimeMillis() - start));
     }
 
+    public static String getFolderName() {
+        return "reactors";
+    }
+
     public static void main(String[] args) {
         generateDatFiles();
     }

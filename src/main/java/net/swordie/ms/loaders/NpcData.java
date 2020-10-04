@@ -163,6 +163,10 @@ public class NpcData {
 		log.info(String.format("Completed generating npc data in %dms.", System.currentTimeMillis() - start));
 	}
 
+	public static String getFolderName() {
+		return "npc";
+	}
+
 	public static Set<Npc> getBaseNpcs() {
 		return npcs;
 	}

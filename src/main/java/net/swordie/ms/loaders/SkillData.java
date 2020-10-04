@@ -1145,6 +1145,10 @@ public class SkillData {
 
     }
 
+    public static String[] getFolderName() {
+        return new String[] {"skills", "mobSkills", "recipes"};
+    }
+
     public static void main(String[] args) {
         generateDatFiles();
     }

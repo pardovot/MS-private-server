@@ -280,6 +280,10 @@ public class EtcData {
         log.info(String.format("Completed generating etc data in %dms.", System.currentTimeMillis() - start));
     }
 
+    public static String getFolderName() {
+        return "etc";
+    }
+
     public static void clear() {
         androidInfo.clear();
     }
